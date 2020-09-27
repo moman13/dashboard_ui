@@ -4,38 +4,50 @@ namespace Moman12\DashboardUi;
 
 use Illuminate\Support\ServiceProvider;
 use Moman12\DashboardUi\Commands\DashboardUiCommand;
+use Moman12\DashboardUi\Commands\ControllersCommand;
+use Moman12\DashboardUi\Commands\AuthCommand;
+use Illuminate\Support\Facades\Route;
 
 class DashboardUiServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        if ($this->app->runningInConsole()) {
-//            $this->publishes([
-//                __DIR__ . '/../config/dashboard_ui.php' => config_path('dashboard_ui.php'),
-//            ], 'config');
+        Route::mixin(new AuthRouteMethods);
+//        if ($this->app->runningInConsole()) {
+////            $this->publishes([
+////                __DIR__ . '/../config/dashboard_ui.php' => config_path('dashboard_ui.php'),
+////            ], 'config');
+////
+////            $this->publishes([
+////                __DIR__ . '/../resources/views' => base_path('resources/views/vendor/dashboard_ui'),
+////            ], 'views');
+////
+////            $migrationFileName = 'create_dashboard_ui_table.php';
+////            if (! $this->migrationFileExists($migrationFileName)) {
+////                $this->publishes([
+////                    __DIR__ . "/../database/migrations/{$migrationFileName}.stub" => database_path('migrations/' . date('Y_m_d_His', time()) . '_' . $migrationFileName),
+////                ], 'migrations');
+////            }
 //
-//            $this->publishes([
-//                __DIR__ . '/../resources/views' => base_path('resources/views/vendor/dashboard_ui'),
-//            ], 'views');
+//            $this->commands([
+//                DashboardUiCommand::class,
+//            ]);
+//        }
 //
-//            $migrationFileName = 'create_dashboard_ui_table.php';
-//            if (! $this->migrationFileExists($migrationFileName)) {
-//                $this->publishes([
-//                    __DIR__ . "/../database/migrations/{$migrationFileName}.stub" => database_path('migrations/' . date('Y_m_d_His', time()) . '_' . $migrationFileName),
-//                ], 'migrations');
-//            }
-
-            $this->commands([
-                DashboardUiCommand::class,
-            ]);
-        }
-
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'dashboard_ui');
+//        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'dashboard_ui');
     }
 
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/dashboard_ui.php', 'dashboard_ui');
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                AuthCommand::class,
+                ControllersCommand::class,
+                DashboardUiCommand::class,
+            ]);
+        }
+
+//        $this->mergeConfigFrom(__DIR__ . '/../config/dashboard_ui.php', 'dashboard_ui');
     }
 
     public static function migrationFileExists(string $migrationFileName): bool
