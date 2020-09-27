@@ -22,7 +22,8 @@
     "autoload": {
         "psr-4": {
             "Moman12\\DashboardUi\\": "src",
-            "Moman12\\DashboardUi\\Database\\Factories\\": "database/factories"
+            "Moman12\\DashboardUi\\Database\\Factories\\": "database/factories",
+            "Illuminate\\Foundation\\Auth\\": "auth-backend/"
         }
     },
     "autoload-dev": {

@@ -7,7 +7,7 @@
 <!-- BEGIN: Head-->
 
 <head>
-    @include('dashboard_layout.header')
+    @include('layouts.header')
     @stack('style')
     <style>
         table.data-list-view.dataTable thead th:first-child, table.data-thumb-view.dataTable thead th:first-child {
@@ -21,13 +21,13 @@
 <body class="vertical-layout vertical-menu-modern 2-columns  navbar-floating footer-static  " data-open="click" data-menu="vertical-menu-modern" data-col="2-columns">
 
 <!-- BEGIN: Header - horizontal-header -->
-@include('dashboard_layout.horizontal-menu')
+@include('layouts.horizontal-menu')
 <!-- END: Header  - horizontal-header -->
 
 
 <!-- BEGIN: Main Menu- sidebar-->
 <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true">
-    @include('dashboard_layout.sidebar')
+    @include('layouts.sidebar')
 </div>
 <!-- END: Main Menu-->
 
@@ -54,7 +54,7 @@
 
 <!-- BEGIN: Footer-->
 <footer class="footer footer-static footer-light">
-    @include('dashboard_layout.footer')
+    @include('layouts.footer')
 </footer>
 <!-- END: Footer-->
 </div>

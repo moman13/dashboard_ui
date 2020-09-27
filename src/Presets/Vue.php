@@ -1,6 +1,6 @@
 <?php
 
-namespace Laravel\Ui\Presets;
+namespace Moman12\DashboardUi\Presets;
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Arr;
@@ -70,20 +70,24 @@ class Vue extends Preset
         );
 
         copy(
-            __DIR__.'/vue-stubs/components',
-            resource_path('js/components')
+            __DIR__.'/vue-stubs/components/ExampleComponent.vue',
+            resource_path('js/components/ExampleComponent.vue')
         );
         copy(
-            __DIR__.'/vue-stubs/auth',
-            resource_path('js/auth')
+            __DIR__.'/vue-stubs/components/FileManger.vue',
+            resource_path('js/components/FileManger.vue')
         );
         copy(
-            __DIR__.'/vue-stubs/mixins',
-            resource_path('js/mixins')
+            __DIR__.'/vue-stubs/auth/login.js',
+            resource_path('js/auth/login.js')
         );
         copy(
-            __DIR__.'/vue-stubs/profile',
-            resource_path('js/profile')
+            __DIR__.'/vue-stubs/mixins/form.js',
+            resource_path('js/mixins/form.js')
+        );
+        copy(
+            __DIR__.'/vue-stubs/profile/index.js',
+            resource_path('js/profile/index.js')
         );
     }
 

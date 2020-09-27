@@ -3,6 +3,8 @@
 namespace Moman12\DashboardUi\Commands;
 
 use Illuminate\Console\Command;
+use Moman12\DashboardUi\Presets\Bootstrap;
+use Moman12\DashboardUi\Presets\Vue;
 use InvalidArgumentException;
 class DashboardUiCommand extends Command
 {
@@ -32,7 +34,7 @@ class DashboardUiCommand extends Command
 
     protected function bootstrap()
     {
-        Presets\Bootstrap::install();
+        Bootstrap::install();
 
         $this->info('Bootstrap scaffolding installed successfully.');
         $this->comment('Please run "npm install && npm run dev" to compile your fresh scaffolding.');
@@ -45,8 +47,8 @@ class DashboardUiCommand extends Command
      */
     protected function vue()
     {
-        Presets\Bootstrap::install();
-        Presets\Vue::install();
+        Bootstrap::install();
+        Vue::install();
 
         $this->info('Vue scaffolding installed successfully.');
         $this->comment('Please run "npm install && npm run dev" to compile your fresh scaffolding.');

@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 use Symfony\Component\Finder\SplFileInfo;
-
+use Illuminate\Support\Facades\File;
 class ControllersCommand extends Command
 {
     /**
@@ -36,7 +36,7 @@ class ControllersCommand extends Command
 
         $filesystem = new Filesystem;
 
-        collect($filesystem->allFiles(__DIR__.'/../stubs/Auth'))
+        collect($filesystem->allFiles(__DIR__.'/../../stubs/Auth'))
             ->each(function (SplFileInfo $file) use ($filesystem) {
                 $filesystem->copy(
                     $file->getPathname(),
@@ -45,5 +45,39 @@ class ControllersCommand extends Command
             });
 
         $this->info('Authentication scaffolding generated successfully.');
+        $helpersFilePath = app_path('helpers.php');
+
+        if (File::exists($helpersFilePath)) {
+            $this->info('Looks like you\'ve already created a helpers file');
+
+            return;
+        }
+
+        File::put($helpersFilePath, $this->helpersFileContents());
+    }
+
+    protected function helpersFileContents()
+    {
+        return <<<EOT
+                <?php
+                function getPublicPathOnServer(){
+                    // just for check if this on local server or production server
+                    if(\$_SERVER["SERVER_NAME"]=='local.path'){
+                        return public_path();
+                    }
+                    return 'server path';
+                }
+                function saveFile(\$file, \$direction)
+                {
+                    \$mime = \$file->getClientOriginalExtension();
+                    \$dir = '/images/'. \$direction ;
+                    File::exists(getPublicPathOnServer().'/images/'. \$direction .'/') or File::makeDirectory(getPublicPathOnServer().'images/'.\$direction, 0755, true);
+                    File::exists(getPublicPathOnServer() .'/'. \$dir) or File::makeDirectory(getPublicPathOnServer(). \$dir, 0755, true);
+                    \$file_name = rand(10000, 99999) . '.' . \$mime;
+                    \$file->move(getPublicPathOnServer().\$dir, \$file_name);
+                    \$data = ['name'=>\$file_name,'path'=>\$dir.'/'.\$file_name];
+                    return \$data ;
+                }
+EOT;
     }
 }

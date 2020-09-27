@@ -18,6 +18,15 @@ class Preset
         if (! $filesystem->isDirectory($directory = resource_path('js/components'))) {
             $filesystem->makeDirectory($directory, 0755, true);
         }
+        if (! $filesystem->isDirectory($directory = resource_path('js/auth'))) {
+            $filesystem->makeDirectory($directory, 0755, true);
+        }
+        if (! $filesystem->isDirectory($directory = resource_path('js/mixins'))) {
+            $filesystem->makeDirectory($directory, 0755, true);
+        }
+        if (! $filesystem->isDirectory($directory = resource_path('js/profile'))) {
+            $filesystem->makeDirectory($directory, 0755, true);
+        }
     }
 
     /**

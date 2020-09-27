@@ -30,12 +30,12 @@ class AuthCommand extends Command
      * @var array
      */
     protected $views = [
-        'auth/login.stub' => 'auth/login.blade.php',
-        'auth/passwords/confirm.stub' => 'auth/passwords/confirm.blade.php',
-        'auth/passwords/email.stub' => 'auth/passwords/email.blade.php',
-        'auth/passwords/reset.stub' => 'auth/passwords/reset.blade.php',
-        'auth/register.stub' => 'auth/register.blade.php',
-        'auth/verify.stub' => 'auth/verify.blade.php',
+        'auth/login.blade.php' => 'auth/login.blade.php',
+        'auth/passwords/confirm.blade.php' => 'auth/passwords/confirm.blade.php',
+        'auth/passwords/email.blade.php' => 'auth/passwords/email.blade.php',
+        'auth/passwords/reset.blade.php' => 'auth/passwords/reset.blade.php',
+        'auth/register.blade.php' => 'auth/register.blade.php',
+        'auth/verify.blade.php' => 'auth/verify.blade.php',
         'home.blade.php' => 'home.blade.php',
         'dashboard_layout/main.blade.php' => 'layouts/main.blade.php',
         'dashboard_layout/footer.blade.php' => 'layouts/footer.blade.php',
@@ -130,7 +130,7 @@ class AuthCommand extends Command
 
         file_put_contents(
             base_path('routes/web.php'),
-            file_get_contents(__DIR__.'/../Route/routes.php'),
+            file_get_contents(__DIR__.'/../Route/route.php'),
             FILE_APPEND
         );
 

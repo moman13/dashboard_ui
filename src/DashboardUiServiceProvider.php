@@ -7,13 +7,21 @@ use Moman12\DashboardUi\Commands\DashboardUiCommand;
 use Moman12\DashboardUi\Commands\ControllersCommand;
 use Moman12\DashboardUi\Commands\AuthCommand;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\File;
 class DashboardUiServiceProvider extends ServiceProvider
 {
     public function boot()
     {
         Route::mixin(new AuthRouteMethods);
-//        if ($this->app->runningInConsole()) {
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__.'/../public/asset' => public_path('admin-layout'),
+            ], 'assets');
+        }
+
+        if (File::exists(app_path('helpers.php'))) {
+            require_once app_path('helpers.php');
+        }
 ////            $this->publishes([
 ////                __DIR__ . '/../config/dashboard_ui.php' => config_path('dashboard_ui.php'),
 ////            ], 'config');
