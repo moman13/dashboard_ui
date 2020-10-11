@@ -67,6 +67,10 @@ class ControllersCommand extends Command
                     }
                     return 'server path';
                 }
+                function user(\$guard = null)
+                {
+                    return auth(\$guard)->user();
+                }
                 function saveFile(\$file, \$direction)
                 {
                     \$mime = \$file->getClientOriginalExtension();

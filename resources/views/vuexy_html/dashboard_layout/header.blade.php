@@ -5,7 +5,7 @@
 <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
 <meta name="author" content="PIXINVENT">
 
-<title> {{config('dashboard-setup.title')[app()->getLocale()]}} </title>
+<title> {{config('dashboard_ui.title')[app()->getLocale()]}} </title>
 <!-- CSRF Token -->
 <meta name="csrf-token" content="{{ csrf_token() }}">
 

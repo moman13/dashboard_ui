@@ -16,9 +16,9 @@
 
                     {{--<!-- Begin: Main Menu- change language-->--}}
                         <li class="dropdown dropdown-language nav-item">
-                            <a class="dropdown-toggle nav-link" id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@if ( app()->getLocale()== 'ar')<i class="flag-icon flag-icon-ps"></i>@else <i class="flag-icon flag-icon-us"></i> @endif<span class="selected-language"> {{ Config::get('languages')[App::getLocale()] }}</span></a>
+                            <a class="dropdown-toggle nav-link" id="dropdown-flag" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">@if ( app()->getLocale()== 'ar')<i class="flag-icon flag-icon-ps"></i>@else <i class="flag-icon flag-icon-us"></i> @endif<span class="selected-language"> {{ Config::get('dashboard_ui.languages')[App::getLocale()] }}</span></a>
                             <div class="dropdown-menu" aria-labelledby="dropdown-flag">
-                                @foreach (Config::get('dashboard-setup.languages') as $lang => $language)
+                                @foreach (Config::get('dashboard_ui.languages') as $lang => $language)
                                     @if ($lang != App::getLocale())
                                 <a class="dropdown-item" href="#" data-language="ar">@if ( $lang== 'ar')<i class="flag-icon flag-icon-ps"></i>@else <i class="flag-icon flag-icon-us"></i> @endif{{$language}}</a>
                                     @endif
@@ -30,20 +30,22 @@
                 <li class="nav-item d-none d-lg-block"><a class="nav-link nav-link-expand"><i class="ficon feather icon-maximize"></i></a></li>
                     <!-- End: Main Menu- user zoom screen-->
                     <!-- Begin: Main Menu- user profile-->
-                <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="javascript:;" data-toggle="dropdown">
-                <div class="user-nav d-sm-flex d-none"><span class="user-name text-bold-600"> Moman</span></div>
-                        <span><img class="round" src="{{asset('app-assets/images/portrait/small/avatar-s-11.jpg')}}" alt="avatar" height="40" width="40"></span>
+                <li class="dropdown dropdown-user nav-item">
+                    <a class="dropdown-toggle nav-link dropdown-user-link" href="javascript:;" data-toggle="dropdown">
+                <div class="user-nav d-sm-flex d-none"><span class="user-name text-bold-600">{{user()->name}}</span></div>
+                        <span><img class="round" src="{{asset('admin-layout/app-assets/images/portrait/small/avatar-s-11.jpg')}}" alt="avatar" height="40" width="40"></span>
                     </a>
                 <div class="dropdown-menu dropdown-menu-right">
 
-                    <a class="dropdown-item" href="#"><i class="feather icon-user"></i>Profile</a>
+                    <a class="dropdown-item" href="#">
+                        <i class="feather icon-user"></i>Profile</a>
                 <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="#"
                         onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
                         <i class="feather icon-power"></i> Logout </a>
 
-                    <form id="logout-form" action="" method="POST" style="display: none;">
+                    <form id="logout-form" action="{{route('logout')}}" method="POST" style="display: none;">
                         @csrf
                     </form>
                 </div>

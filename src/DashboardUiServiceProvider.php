@@ -22,9 +22,9 @@ class DashboardUiServiceProvider extends ServiceProvider
         if (File::exists(app_path('helpers.php'))) {
             require_once app_path('helpers.php');
         }
-////            $this->publishes([
-////                __DIR__ . '/../config/dashboard_ui.php' => config_path('dashboard_ui.php'),
-////            ], 'config');
+            $this->publishes([
+                __DIR__ . '/../config/dashboard_ui.php' => config_path('dashboard_ui.php'),
+            ], 'config');
 ////
 ////            $this->publishes([
 ////                __DIR__ . '/../resources/views' => base_path('resources/views/vendor/dashboard_ui'),
