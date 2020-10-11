@@ -52,8 +52,9 @@ return [
 ## Usage
 
 ``` php
-$dashboard_ui = new Moman12\DashboardUi();
-echo $dashboard_ui->echoPhrase('Hello, Moman12!');
+
+php artisan ui vue --auth
+
 ```
 
 ## Testing
