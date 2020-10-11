@@ -38,13 +38,9 @@ return [
 
 php artisan ui vue --auth
 
+npm install & npm run watch 
 ```
 
-## Testing
-
-``` bash
-composer test
-```
 
 ## Changelog
 
