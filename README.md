@@ -24,6 +24,11 @@ You can install the package via composer:
 ```bash
 composer require moman12/dashboard_ui
 ```
+You can publish and run the css/js with:
+
+```bash
+php artisan vendor:publish --provider="Moman12\DashboardUi\DashboardUiServiceProvider" --tag="assets"
+```
 
 You can publish and run the migrations with:
 
